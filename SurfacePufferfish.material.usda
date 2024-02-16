@@ -1,0 +1,594 @@
+#usda 1.0
+(
+    "Exported from Adobe Substance 3D Painter 9.1.2"
+    defaultPrim = "PufferFishModelForSubstance_obj"
+)
+
+def "PufferFishModelForSubstance_obj"
+{
+    def Scope "material"
+    {
+        def Material "Right_Fin" (
+            customData = {
+                dictionary adobe = {
+                    dictionary painter = {
+                        asset painterProject_spp = @C:/Users/monke/OneDrive/Desktop/Homework/Substance Dont Upload to Git/SurfacePufferfish.spp@
+                    }
+                }
+            }
+        )
+        {
+            asset inputs:basecolor_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Fin_BaseColor.png@
+            asset inputs:compositedNormalGL_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Fin_Normal.png@
+            asset inputs:height_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Fin_Height.png@
+            asset inputs:metallic_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Fin_Metalness.png@
+            asset inputs:roughness_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Fin_Roughness.png@
+            token outputs:displacement.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:displacement>
+            token outputs:surface.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:surface>
+
+            def NodeGraph "UsdPreviewSurface"
+            {
+                def Shader "ShaderUsdPreviewSurface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float3 inputs:diffuseColor.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/diffuseColorTextureShader.outputs:rgb>
+                    float inputs:metallic.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/metallicTextureShader.outputs:r>
+                    normal3f inputs:normal.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/normalTextureShader.outputs:rgb>
+                    float inputs:roughness.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/roughnessTextureShader.outputs:r>
+                    token outputs:displacement
+                    token outputs:surface
+                }
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "diffuseColorTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Fin.inputs:basecolor_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float3 outputs:rgb
+                }
+
+                def Shader "roughnessTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Fin.inputs:roughness_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "metallicTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Fin.inputs:metallic_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "normalTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    float4 inputs:bias = (-1, -1, -1, 0)
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Fin.inputs:compositedNormalGL_tex>
+                    float4 inputs:scale = (2, 2, 2, 1)
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    normal3f outputs:rgb
+                }
+            }
+        }
+
+        def Material "Left_Fin" (
+            customData = {
+                dictionary adobe = {
+                    dictionary painter = {
+                        asset painterProject_spp = @C:/Users/monke/OneDrive/Desktop/Homework/Substance Dont Upload to Git/SurfacePufferfish.spp@
+                    }
+                }
+            }
+        )
+        {
+            asset inputs:basecolor_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Fin_BaseColor.png@
+            asset inputs:compositedNormalGL_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Fin_Normal.png@
+            asset inputs:height_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Fin_Height.png@
+            asset inputs:metallic_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Fin_Metalness.png@
+            asset inputs:roughness_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Fin_Roughness.png@
+            token outputs:displacement.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:displacement>
+            token outputs:surface.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:surface>
+
+            def NodeGraph "UsdPreviewSurface"
+            {
+                def Shader "ShaderUsdPreviewSurface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float3 inputs:diffuseColor.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/diffuseColorTextureShader.outputs:rgb>
+                    float inputs:metallic.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/metallicTextureShader.outputs:r>
+                    normal3f inputs:normal.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/normalTextureShader.outputs:rgb>
+                    float inputs:roughness.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/roughnessTextureShader.outputs:r>
+                    token outputs:displacement
+                    token outputs:surface
+                }
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "diffuseColorTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Fin.inputs:basecolor_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float3 outputs:rgb
+                }
+
+                def Shader "roughnessTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Fin.inputs:roughness_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "metallicTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Fin.inputs:metallic_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "normalTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    float4 inputs:bias = (-1, -1, -1, 0)
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Fin.inputs:compositedNormalGL_tex>
+                    float4 inputs:scale = (2, 2, 2, 1)
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Fin/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    normal3f outputs:rgb
+                }
+            }
+        }
+
+        def Material "Left_Eye" (
+            customData = {
+                dictionary adobe = {
+                    dictionary painter = {
+                        asset painterProject_spp = @C:/Users/monke/OneDrive/Desktop/Homework/Substance Dont Upload to Git/SurfacePufferfish.spp@
+                    }
+                }
+            }
+        )
+        {
+            asset inputs:basecolor_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Eye_BaseColor.png@
+            asset inputs:compositedNormalGL_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Eye_Normal.png@
+            asset inputs:height_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Eye_Height.png@
+            asset inputs:metallic_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Eye_Metalness.png@
+            asset inputs:roughness_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Left Eye_Roughness.png@
+            token outputs:displacement.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:displacement>
+            token outputs:surface.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:surface>
+
+            def NodeGraph "UsdPreviewSurface"
+            {
+                def Shader "ShaderUsdPreviewSurface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float3 inputs:diffuseColor.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/diffuseColorTextureShader.outputs:rgb>
+                    float inputs:metallic.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/metallicTextureShader.outputs:r>
+                    normal3f inputs:normal.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/normalTextureShader.outputs:rgb>
+                    float inputs:roughness.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/roughnessTextureShader.outputs:r>
+                    token outputs:displacement
+                    token outputs:surface
+                }
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "diffuseColorTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Eye.inputs:basecolor_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float3 outputs:rgb
+                }
+
+                def Shader "roughnessTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Eye.inputs:roughness_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "metallicTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Eye.inputs:metallic_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "normalTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    float4 inputs:bias = (-1, -1, -1, 0)
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Left_Eye.inputs:compositedNormalGL_tex>
+                    float4 inputs:scale = (2, 2, 2, 1)
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Left_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    normal3f outputs:rgb
+                }
+            }
+        }
+
+        def Material "Right_Eye" (
+            customData = {
+                dictionary adobe = {
+                    dictionary painter = {
+                        asset painterProject_spp = @C:/Users/monke/OneDrive/Desktop/Homework/Substance Dont Upload to Git/SurfacePufferfish.spp@
+                    }
+                }
+            }
+        )
+        {
+            asset inputs:basecolor_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Eye_BaseColor.png@
+            asset inputs:compositedNormalGL_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Eye_Normal.png@
+            asset inputs:height_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Eye_Height.png@
+            asset inputs:metallic_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Eye_Metalness.png@
+            asset inputs:roughness_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Right Eye_Roughness.png@
+            token outputs:displacement.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:displacement>
+            token outputs:surface.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:surface>
+
+            def NodeGraph "UsdPreviewSurface"
+            {
+                def Shader "ShaderUsdPreviewSurface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float3 inputs:diffuseColor.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/diffuseColorTextureShader.outputs:rgb>
+                    float inputs:metallic.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/metallicTextureShader.outputs:r>
+                    normal3f inputs:normal.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/normalTextureShader.outputs:rgb>
+                    float inputs:roughness.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/roughnessTextureShader.outputs:r>
+                    token outputs:displacement
+                    token outputs:surface
+                }
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "diffuseColorTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Eye.inputs:basecolor_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float3 outputs:rgb
+                }
+
+                def Shader "roughnessTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Eye.inputs:roughness_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "metallicTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Eye.inputs:metallic_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "normalTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    float4 inputs:bias = (-1, -1, -1, 0)
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Right_Eye.inputs:compositedNormalGL_tex>
+                    float4 inputs:scale = (2, 2, 2, 1)
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Right_Eye/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    normal3f outputs:rgb
+                }
+            }
+        }
+
+        def Material "Mouth" (
+            customData = {
+                dictionary adobe = {
+                    dictionary painter = {
+                        asset painterProject_spp = @C:/Users/monke/OneDrive/Desktop/Homework/Substance Dont Upload to Git/SurfacePufferfish.spp@
+                    }
+                }
+            }
+        )
+        {
+            asset inputs:basecolor_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Mouth_BaseColor.png@
+            asset inputs:compositedNormalGL_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Mouth_Normal.png@
+            asset inputs:height_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Mouth_Height.png@
+            asset inputs:metallic_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Mouth_Metalness.png@
+            asset inputs:roughness_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_Mouth_Roughness.png@
+            token outputs:displacement.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:displacement>
+            token outputs:surface.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:surface>
+
+            def NodeGraph "UsdPreviewSurface"
+            {
+                def Shader "ShaderUsdPreviewSurface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float3 inputs:diffuseColor.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/diffuseColorTextureShader.outputs:rgb>
+                    float inputs:metallic.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/metallicTextureShader.outputs:r>
+                    normal3f inputs:normal.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/normalTextureShader.outputs:rgb>
+                    float inputs:roughness.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/roughnessTextureShader.outputs:r>
+                    token outputs:displacement
+                    token outputs:surface
+                }
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "diffuseColorTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Mouth.inputs:basecolor_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float3 outputs:rgb
+                }
+
+                def Shader "roughnessTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Mouth.inputs:roughness_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "metallicTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Mouth.inputs:metallic_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "normalTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    float4 inputs:bias = (-1, -1, -1, 0)
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/Mouth.inputs:compositedNormalGL_tex>
+                    float4 inputs:scale = (2, 2, 2, 1)
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/Mouth/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    normal3f outputs:rgb
+                }
+            }
+        }
+
+        def Material "initialShadingGroup" (
+            customData = {
+                dictionary adobe = {
+                    dictionary painter = {
+                        asset painterProject_spp = @C:/Users/monke/OneDrive/Desktop/Homework/Substance Dont Upload to Git/SurfacePufferfish.spp@
+                    }
+                }
+            }
+        )
+        {
+            asset inputs:basecolor_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_initialShadingGroup_BaseColor.png@
+            asset inputs:compositedNormalGL_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_initialShadingGroup_Normal.png@
+            asset inputs:height_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_initialShadingGroup_Height.png@
+            asset inputs:metallic_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_initialShadingGroup_Metalness.png@
+            asset inputs:roughness_tex = @SurfacePufferfish_textures/PufferFishModelForSubstance_initialShadingGroup_Roughness.png@
+            token outputs:displacement.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:displacement>
+            token outputs:surface.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/ShaderUsdPreviewSurface.outputs:surface>
+
+            def NodeGraph "UsdPreviewSurface"
+            {
+                def Shader "ShaderUsdPreviewSurface"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float3 inputs:diffuseColor.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/diffuseColorTextureShader.outputs:rgb>
+                    float inputs:metallic.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/metallicTextureShader.outputs:r>
+                    normal3f inputs:normal.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/normalTextureShader.outputs:rgb>
+                    float inputs:roughness.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/roughnessTextureShader.outputs:r>
+                    token outputs:displacement
+                    token outputs:surface
+                }
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname = "st"
+                    float2 outputs:result
+                }
+
+                def Shader "diffuseColorTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup.inputs:basecolor_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float3 outputs:rgb
+                }
+
+                def Shader "roughnessTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup.inputs:roughness_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "metallicTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup.inputs:metallic_tex>
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:r
+                }
+
+                def Shader "normalTextureShader"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    float4 inputs:bias = (-1, -1, -1, 0)
+                    asset inputs:file.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup.inputs:compositedNormalGL_tex>
+                    float4 inputs:scale = (2, 2, 2, 1)
+                    float2 inputs:st.connect = </PufferFishModelForSubstance_obj/material/initialShadingGroup/UsdPreviewSurface/TexCoordReader.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    normal3f outputs:rgb
+                }
+            }
+        }
+    }
+
+    over "PufferFish_geo"
+    {
+        over "PufferFish_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/initialShadingGroup>
+        }
+    }
+
+    over "PufferFish_geo_R_Eye_geo"
+    {
+        over "PufferFish_geo_R_Eye_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/Right_Eye>
+        }
+    }
+
+    over "PufferFish_geo_L_Eye_geo"
+    {
+        over "PufferFish_geo_L_Eye_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/Left_Eye>
+        }
+    }
+
+    over "PufferFish_geo_Mouth_geo"
+    {
+        over "PufferFish_geo_Mouth_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/Mouth>
+        }
+    }
+
+    over "PufferFish_geo_L_Fin_geo"
+    {
+        over "PufferFish_geo_L_Fin_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/Left_Fin>
+        }
+    }
+
+    over "PufferFish_geo_Middle__Head_Spike_geo"
+    {
+        over "PufferFish_geo_Middle__Head_Spike_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/initialShadingGroup>
+        }
+    }
+
+    over "PufferFish_geo_Right_Head_Spike_geo"
+    {
+        over "PufferFish_geo_Right_Head_Spike_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/initialShadingGroup>
+        }
+    }
+
+    over "PufferFish_geo_Left_Head_Spike_geo"
+    {
+        over "PufferFish_geo_Left_Head_Spike_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/initialShadingGroup>
+        }
+    }
+
+    over "R_Fin_geo"
+    {
+        over "R_Fin_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </PufferFishModelForSubstance_obj/material/Right_Fin>
+        }
+    }
+}
+
